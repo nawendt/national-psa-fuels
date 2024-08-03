@@ -4,7 +4,7 @@ const eacc_base = "https://gacc.nifc.gov/eacc/predictive_services/fuels_fire-dan
 const rmcc_base = "https://gacc.nifc.gov/rmcc/predictive/fuels_fire-danger";
 const nrcc_base = "https://gacc.nifc.gov/nrcc/predictive/fuels_fire-danger/graphs/GraphPlots";
 const swcc_base = "https://gacc.nifc.gov/swcc/predictive/fuels_fire-danger/nfdrs_charts/SW_Charts/images";
-const gbcc_base = "https://www.wfas.net/plot/plot_sig3.php";
+const gbcc_base = "https://gacc.nifc.gov/gbcc/predictive/new_PSA_ERCmap/ercY/charts";
 const nwcc_base = "https://gacc.nifc.gov/nwcc/content/products/fwx/matrices";
 const oncc_base = "https://gacc.nifc.gov/oncc/predictive/weather/FuelsCharts_Images";
 const oscc_base = "https://gacc.nifc.gov/oscc/predictive/fuels_fire-danger/fuelscharts";
@@ -106,9 +106,9 @@ load_map = async function() {
                   </style>
                 </head>
                 <body>
-                    <img src="${nrcc_base}/ERC-${d.properties.PSANationalCode.slice(2)}.jpeg" />
-                    <img src="${nrcc_base}/FM1000-${d.properties.PSANationalCode.slice(2)}.jpeg" />
-                    <img src="${nrcc_base}/FM100-${d.properties.PSANationalCode.slice(2)}.jpeg" />
+                    <img src="${nrcc_base}/ERC-${parseInt(d.properties.PSANationalCode.slice(2))}.jpeg" />
+                    <img src="${nrcc_base}/FM1000-${parseInt(d.properties.PSANationalCode.slice(2))}.jpeg" />
+                    <img src="${nrcc_base}/FM100-${parseInt(d.properties.PSANationalCode.slice(2))}.jpeg" />
                 </body>
                 </html>
                 `;
@@ -128,9 +128,9 @@ load_map = async function() {
                   </style>
                 </head>
                 <body>
-                    <img src="${gbcc_base}?SIG=${d.properties.PSANationalCode}&INDEX=ERCy">
-                    <img src="${gbcc_base}?SIG=${d.properties.PSANationalCode}&INDEX=FM100">
-                    <img src="${gbcc_base}?SIG=${d.properties.PSANationalCode}&INDEX=FM1000">
+                    <img src="${gbcc_base}/${d.properties.PSANationalCode}%20Climatology-1.jpeg">
+                    <img src="${gbcc_base}/${d.properties.PSANationalCode}%20Climatology-3.jpeg">
+                    <img src="${gbcc_base}/${d.properties.PSANationalCode}%20Climatology-4.jpeg">
                 </body>
                 </html>
                 `;
