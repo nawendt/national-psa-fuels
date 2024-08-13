@@ -1,9 +1,10 @@
 const akcc_base = "https://fire.ak.blm.gov/predsvcs/fuelfire.php";
 const sacc_base = "https://gacc.nifc.gov/sacc/predictive/fuels_fire_danger/SA_PSA_Indices/SACC_Fuels_Charts";
 const eacc_base = "https://gacc.nifc.gov/eacc/predictive_services/fuels_fire-danger/fuels_fire-danger_files/EA_PSA_Fire_Danger_Graphs";
-const rmcc_base = "https://gacc.nifc.gov/rmcc/predictive/fuels_fire-danger";
+const rmcc_base = "https://gacc.nifc.gov/rmcc/images/predictive/nfdrs";
 const nrcc_base = "https://gacc.nifc.gov/nrcc/predictive/fuels_fire-danger/graphs/GraphPlots";
 const swcc_base = "https://gacc.nifc.gov/swcc/predictive/fuels_fire-danger/nfdrs_charts/SW_Charts/images";
+// const gbcc_base = "https://www.wfas.net/plot/plot_sig3.php";
 const gbcc_base = "https://gacc.nifc.gov/gbcc/predictive/new_PSA_ERCmap/ercY/charts";
 const nwcc_base = "https://gacc.nifc.gov/nwcc/content/products/fwx/matrices";
 const oncc_base = "https://gacc.nifc.gov/oncc/predictive/weather/FuelsCharts_Images";
