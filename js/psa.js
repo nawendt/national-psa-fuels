@@ -4,11 +4,10 @@ const eacc_base = "https://gacc.nifc.gov/eacc/predictive_services/fuels_fire-dan
 const rmcc_base = "https://gacc.nifc.gov/rmcc/images/predictive/nfdrs";
 const nrcc_base = "https://gacc.nifc.gov/nrcc/predictive/fuels_fire-danger/graphs/GraphPlots";
 const swcc_base = "https://gacc.nifc.gov/swcc/predictive/fuels_fire-danger/nfdrs_charts/SW_Charts/images";
-// const gbcc_base = "https://www.wfas.net/plot/plot_sig3.php";
 const gbcc_base = "https://gacc.nifc.gov/gbcc/predictive/new_PSA_ERCmap/ercY/charts";
 const nwcc_base = "https://gacc.nifc.gov/nwcc/content/products/fwx/matrices";
-const oncc_base = "https://gacc.nifc.gov/oncc/predictive/weather/FuelsCharts_Images";
-const oscc_base = "https://gacc.nifc.gov/oscc/predictive/fuels_fire-danger/fuelscharts";
+const oncc_base = "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/ONCC_ERC/FeatureServer/1";
+const oscc_base = "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/ONCC_ERC/FeatureServer/1";
 const psa_geoms = d3.json("./gis/psa.json");
 const gacc_geoms = d3.json("./gis/gacc.json");
 const state_geoms = d3.json("./gis/states.json");
@@ -51,6 +50,10 @@ load_map = async function() {
             if (d.properties.GACCUnitID == "USGASAC") {
                 link = `${sacc_base}/PSA${d.properties.PSANationalCode.slice(2)}_Fuels/ERCY.png`;
             } else if (d.properties.GACCUnitID == "USWIEACC") {
+                let psa = d.properties.PSANationalCode;
+                if (["EA10", "EA11"].includes(psa)) {
+                    psa = "EA10_11";
+                }
                 link = `
                 <!DOCTYPE html>
                 <html lang="en-US">
@@ -64,9 +67,9 @@ load_map = async function() {
                   </style>
                 </head>
                 <body>
-                    <img src="${eacc_base}/${d.properties.PSANationalCode}_ERC.jpg" />
-                    <img src="${eacc_base}/${d.properties.PSANationalCode}_100.jpg" />
-                    <img src="${eacc_base}/${d.properties.PSANationalCode}_1000.jpg" />
+                    <img src="${eacc_base}/${psa}_ERC.jpg" />
+                    <img src="${eacc_base}/${psa}_100.jpg" />
+                    <img src="${eacc_base}/${psa}_1000.jpg" />
                 </body>
                 </html>
                 `;
@@ -115,7 +118,7 @@ load_map = async function() {
                 `;
             } else if (d.properties.GACCUnitID == "USNMSWC") {
                 link = `${swcc_base}/PSA_${parseInt(d.properties.PSANationalCode.slice(2))}.png`;
-            }else if (d.properties.GACCUnitID == "USUTGBC") {
+            } else if (d.properties.GACCUnitID == "USUTGBC") {
                 link = `
                 <!DOCTYPE html>
                 <html lang="en-US">
@@ -166,6 +169,7 @@ load_map = async function() {
                 } else {
                     psa = parseInt(psa.slice(2));
                 }
+                let attachment = 4 * psa - 3;
                 link = `
                 <!DOCTYPE html>
                 <html lang="en-US">
@@ -179,17 +183,17 @@ load_map = async function() {
                   </style>
                 </head>
                 <body>
-                    <img src="${oncc_base}/ERC-${psa}.jpeg" />
-                    <img src="${oncc_base}/FM%20100-${psa}.jpeg" />
-                    <img src="${oncc_base}/FM%201000-${psa}.jpeg" />
+                    <img src="${oncc_base}/${psa}/attachments/${attachment}" />
+                    <img src="${oncc_base}/${psa}/attachments/${attachment + 2}" />
+                    <img src="${oncc_base}/${psa}/attachments/${attachment + 3}" />
                 </body>
                 </html>
                 `;
             } else if (d.properties.GACCUnitID == "USCAOSCC") {
                 let psa = d.properties.PSANationalCode;
-                if (["SC12", "SC13"].includes(psa)) {
-                    psa = "SC12&13";
-                }
+                psa = parseInt(psa.slice(2))
+                let id = psa + 9;
+                let attachment = 4 * psa + 33;
                 link = `
                 <!DOCTYPE html>
                 <html lang="en-US">
@@ -203,9 +207,9 @@ load_map = async function() {
                   </style>
                 </head>
                 <body>
-                    <img src="${oscc_base}/${psa}Climatology-1.jpeg" />
-                    <img src="${oscc_base}/${psa}Climatology-3.jpeg" />
-                    <img src="${oscc_base}/${psa}Climatology-4.jpeg" />
+                    <img src="${oscc_base}/${id}/attachments/${attachment}" />
+                    <img src="${oscc_base}/${id}/attachments/${attachment + 2}" />
+                    <img src="${oscc_base}/${id}/attachments/${attachment + 3}" />
                 </body>
                 </html>
                 `;
