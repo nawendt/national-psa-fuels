@@ -117,7 +117,11 @@ load_map = async function() {
                 </html>
                 `;
             } else if (d.properties.GACCUnitID == "USNMSWC") {
-                link = `${swcc_base}/PSA_${parseInt(d.properties.PSANationalCode.slice(2))}.png`;
+                if (d.properties.PSANationalCode.slice(-1).includes('S') || d.properties.PSANationalCode.slice(-1).includes('N')) {
+                    link = `${swcc_base}/PSA_${parseInt(d.properties.PSANationalCode.slice(2))}${d.properties.PSANationalCode.slice(-1)}.png`;
+                } else {
+                    link = `${swcc_base}/PSA_${parseInt(d.properties.PSANationalCode.slice(2))}.png`;
+                }
             } else if (d.properties.GACCUnitID == "USUTGBC") {
                 link = `
                 <!DOCTYPE html>
