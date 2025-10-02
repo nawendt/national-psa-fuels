@@ -136,9 +136,9 @@ load_map = async function() {
                   </style>
                 </head>
                 <body>
-                    <img src="${gbcc_base}/${d.properties.PSANationalCode}%20Climatology-1.jpeg">
-                    <img src="${gbcc_base}/${d.properties.PSANationalCode}%20Climatology-3.jpeg">
-                    <img src="${gbcc_base}/${d.properties.PSANationalCode}%20Climatology-4.jpeg">
+                    <img src="${gbcc_base}/${d.properties.PSANationalCode}-1.jpeg">
+                    <img src="${gbcc_base}/${d.properties.PSANationalCode}-3.jpeg">
+                    <img src="${gbcc_base}/${d.properties.PSANationalCode}-4.jpeg">
                 </body>
                 </html>
                 `;
