@@ -67,9 +67,9 @@ load_map = async function() {
                   </style>
                 </head>
                 <body>
-                    <img src="${eacc_base}/${psa}_ERC.jpg" />
-                    <img src="${eacc_base}/${psa}_100.jpg" />
-                    <img src="${eacc_base}/${psa}_1000.jpg" />
+                    <img src="${eacc_base}/${psa}_ERC.jpeg" />
+                    <img src="${eacc_base}/${psa}_100.jpeg" />
+                    <img src="${eacc_base}/${psa}_1000.jpeg" />
                 </body>
                 </html>
                 `;
